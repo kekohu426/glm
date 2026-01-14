@@ -3,7 +3,7 @@ import { Fraunces, IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
-const GA_ID = "G-NPVJ7LN813";
+const GA_ID = "G-XBY1KSQ494";
 
 const display = Fraunces({
   subsets: ["latin"],
