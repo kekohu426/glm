@@ -1,0 +1,205 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --sand: #f5efe6;
+  --ink: #141b22;
+  --ink-soft: #2a3540;
+  --accent: #f7b23b;
+  --accent-2: #4a8f78;
+  --accent-3: #e4572e;
+  --panel: rgba(255, 255, 255, 0.78);
+  --panel-border: rgba(20, 27, 34, 0.12);
+  --shadow: 0 30px 80px rgba(15, 23, 30, 0.2);
+}
+
+@theme inline {
+  --color-background: var(--sand);
+  --color-foreground: var(--ink);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--sand);
+  background-image:
+    radial-gradient(900px 560px at 12% -10%, rgba(247, 178, 59, 0.3), transparent 60%),
+    radial-gradient(720px 520px at 88% 8%, rgba(74, 143, 120, 0.28), transparent 60%),
+    linear-gradient(transparent 0, rgba(20, 27, 34, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, transparent 0, rgba(20, 27, 34, 0.03) 1px, transparent 1px);
+  background-size: auto, auto, 44px 44px, 44px 44px;
+  background-position: center, center, -1px -1px, -1px -1px;
+  color: var(--ink);
+  font-family: var(--font-body), sans-serif;
+  min-height: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.font-display {
+  font-family: var(--font-display), serif;
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, var(--accent-3), var(--accent));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.75rem 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease,
+    color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: #fefaf3;
+  box-shadow: 0 20px 40px rgba(20, 27, 34, 0.2);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  background: #0b1218;
+}
+
+.btn-ghost {
+  border: 1px solid rgba(20, 27, 34, 0.18);
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.btn-ghost:hover {
+  border-color: rgba(20, 27, 34, 0.35);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(20, 27, 34, 0.12);
+  padding: 0.35rem 0.8rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.field {
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid rgba(20, 27, 34, 0.16);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.8rem 1rem;
+  color: var(--ink);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field:focus {
+  outline: none;
+  border-color: rgba(74, 143, 120, 0.7);
+  box-shadow: 0 0 0 4px rgba(74, 143, 120, 0.15);
+}
+
+.subtle {
+  color: rgba(20, 27, 34, 0.68);
+}
+
+.orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(1px);
+  opacity: 0.8;
+  mix-blend-mode: multiply;
+}
+
+.orb-amber {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle at 30% 30%, rgba(247, 178, 59, 0.7), transparent 70%);
+}
+
+.orb-teal {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle at 30% 30%, rgba(74, 143, 120, 0.6), transparent 70%);
+}
+
+.orb-rose {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle at 30% 30%, rgba(228, 87, 46, 0.55), transparent 70%);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  animation: rise 0.8s ease forwards;
+}
+
+.reveal-delay-1 {
+  animation-delay: 0.12s;
+}
+
+.reveal-delay-2 {
+  animation-delay: 0.24s;
+}
+
+.reveal-delay-3 {
+  animation-delay: 0.36s;
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .float {
+    animation: none;
+    opacity: 1;
+  }
+}
