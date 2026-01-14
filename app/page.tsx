@@ -1,5 +1,27 @@
-/* eslint-disable @next/next/no-img-element -- Remote sample images come from BigModel docs. */
+import Image from "next/image";
 import Generator from "./components/Generator";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "GLMmaker",
+  description:
+    "Generate images with the open-source GLM-Image model. Free text-to-image studio with prompt presets, multi-resolution output, and direct BigModel API access.",
+  url: "https://glmmaker.com",
+  applicationCategory: "DesignApplication",
+  operatingSystem: "Web Browser",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+  featureList: [
+    "Text-to-image generation",
+    "Multi-resolution output (512-2048px)",
+    "Prompt presets",
+    "Direct BigModel API access",
+  ],
+};
 
 export default function Home() {
   const features = [
@@ -67,7 +89,12 @@ export default function Home() {
   ];
 
   return (
-    <div className="relative min-h-screen">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="relative min-h-screen">
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="orb orb-amber left-[-120px] top-[-120px]" />
         <div className="orb orb-teal right-[-140px] top-[120px]" />
@@ -239,12 +266,13 @@ export default function Home() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {gallery.map((item) => (
               <div key={item.url} className="panel p-4">
-                <div className="overflow-hidden rounded-2xl">
-                  <img
+                <div className="relative h-52 overflow-hidden rounded-2xl">
+                  <Image
                     src={item.url}
                     alt={item.title}
-                    className="h-52 w-full object-cover"
-                    loading="lazy"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>
                 <p className="mt-3 text-sm font-semibold">{item.title}</p>
@@ -291,5 +319,6 @@ export default function Home() {
         </div>
       </footer>
     </div>
+    </>
   );
 }
